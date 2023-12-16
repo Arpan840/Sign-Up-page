@@ -20,7 +20,7 @@ function App() {
     });
   }
   function validation(email) {
-    return email.includes("@") && email.includes(".") && email.includes("com");
+    return email.includes("@") && email.includes(".") ;
   }
   function handelBlur(e) {
     const { name, value: inputValue } = e.target;
@@ -40,7 +40,8 @@ function App() {
     if (
       !error.emailError &&
       !error.confirmPasswordError &&
-      !error.passwordError
+      !error.passwordError &&
+      value.password === value.confirmPassword
     ) {
       console.log(value);
       setValue({
@@ -126,8 +127,10 @@ function App() {
           onChange={handleChange}
           required
           minLength="8"
-          onBlur={(e) => {
-            e.target.value === value.password && e.target.value.length >= 8
+          onBlur={() => {
+            console.log(value.password===value.confirmPassword,"test")
+            value.password===value.confirmPassword
+            
               ? setError({
                   confirmPasswordError: false,
                 })
