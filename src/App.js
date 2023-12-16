@@ -70,7 +70,9 @@ function App() {
             required
             onChange={handleChange}
             onBlur={handelBlur}
-            style={{border:error.emailError?"1px solid red":"1px solid black"}}
+            style={{
+              border: error.emailError ? "1px solid red" : "1px solid black",
+            }}
           />
           {error.emailError ? (
             <div className="text-danger">{error.emailError}</div>
@@ -100,7 +102,9 @@ function App() {
                   passwordError: true,
                 });
           }}
-          style={{border:error.passwordError?"1px solid red":"1px solid black"}}
+          style={{
+            border: error.passwordError ? "1px solid red" : "1px solid black",
+          }}
         />
         {error.passwordError ? (
           <div id="passwordHelpBlock" className="form-text">
@@ -121,14 +125,19 @@ function App() {
           value={value.confirmPassword}
           onChange={handleChange}
           required
+          minLength="8"
           onBlur={(e) => {
-            e.target.value === value.password
+            e.target.value === value.password && e.target.value.length >= 8
               ? setError({
                   confirmPasswordError: false,
                 })
               : setError({ confirmPasswordError: true });
           }}
-          style={{border:error.confirmPasswordError?"1px solid red":"1px solid black"}}
+          style={{
+            border: error.confirmPasswordError
+              ? "1px solid red"
+              : "1px solid black",
+          }}
         />
         {error.confirmPasswordError ? (
           <div id="passwordHelpBlock" className="form-text">
